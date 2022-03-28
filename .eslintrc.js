@@ -19,5 +19,6 @@ module.exports = {
         "no-restricted-syntax": ["off", "FunctionExpression", "WithStatement", "BinaryExpression[operator='in']"],
         "guard-for-in": "off",
         "operator-assignment": ["off", "always"],
+        "max-len": ["error", { code: 180 }],
     },
 };

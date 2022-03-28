@@ -3,11 +3,26 @@
 const cadexService = require("./service/serviceCadex");
 
 const controller = {
-    async cadex(_req, res, _next) {
+    getCadex(req, res, _next) {
         const dataPhrase = cadexService.generate();
-
+        const valuesToReplace = req.query;
+        console.log(valuesToReplace);
+        const copy = { ...dataPhrase, ...valuesToReplace };
         // console.log("ma phrase ", phrase);
-        res.json(cadexService.phraseData(dataPhrase));
+        res.json(copy.glue());
+    },
+    postCadex(req, res, _next) {
+        // console.log("ma phrase ", phrase);
+        const values = req.body;
+
+        // on insère les valeurs
+        cadexService.add(values);
+
+        // je renvoie une phrase avec les valeurs ajoutées
+        const cadex = cadexService.generate();
+        const copy = { ...cadex, ...values };
+
+        res.json(copy.glue());
     },
 };
 
