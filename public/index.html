@@ -16,22 +16,40 @@
     </header>
     <main>
         <div class="formOpen button">Formulaire</div>
-        <form>
+        <form id="formPost" action="/v1/cadex" method="post">
             <div class="formClose button">X</div>
             <div>
                 <label for="name">Nom :</label>
-                <input type="text" id="name">
+                <input type="text" id="name" name="name" value="">
                 <label for="adjective">Adjectif :</label>
-                <input type="text" id="adjective">
+                <input type="text" id="adjective" name="adjective" value="">
             </div>
             <div>
                 <label for="verb">Verbe :</label>
-                <input type="text" id="verb">
+                <input type="text" id="verb" name="verb" value="">
                 <label for="complement">Complément :</label>
-                <input type="text" id="complement">
+                <input type="text" id="complement" name="complement" value="">
             </div>
             <div>
                 <button class="button" id="valider">Valider</button>
+            </div>
+        </form>
+        <form id="formPatch">
+            <div class="formClose button">X</div>
+            <div>
+                <label for="name">Nom :</label>
+                <input type="text" id="namePatch">
+                <label for="adjective">Adjectif :</label>
+                <input type="text" id="adjectivePatch">
+            </div>
+            <div>
+                <label for="verb">Verbe :</label>
+                <input type="text" id="verbPatch">
+                <label for="complement">Complément :</label>
+                <input type="text" id="complementPatch">
+            </div>
+            <div>
+                <button class="button" id="validerPatch">Valider</button>
             </div>
         </form>
         <button class="button" id="again">Again !</button>

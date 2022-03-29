@@ -39,15 +39,34 @@ const app = {
             const response = await fetch(`${app.baseUrl}/cadex`, { method: "POST" });
             if (response.status !== 404) {
                 document.querySelector(".formOpen").style.display = "block";
+                document.querySelector(".formOpen").classList.add("buttonPost");
             }
         } catch (error) {
             console.error(error);
         }
     },
+    tryPatch: async () => {
+        try {
+            const response = await fetch(`${app.baseUrl}/cadex`, { method: "PATCH" });
+            if (response.status !== 404) {
+                const ButtonPatch = document.querySelector(".formOpen").cloneNode(true);
+                ButtonPatch.classList.remove("buttonPost");
+                ButtonPatch.style.display = "block";
+                ButtonPatch.style.left = "150px";
+                ButtonPatch.textContent = "Patch";
+                ButtonPatch.classList.add("buttonPatch");
 
-    showForm: () => {
-        document.querySelector(".formOpen").style.display = "none";
-        document.querySelector("form").style.display = "block";
+                // [newChild, child1, child2]
+                document.querySelector("main").prepend(ButtonPatch);
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    },
+    showForm: (event, form) => {
+        console.log("mon param1 : ", event);
+        console.log("mon param : ", form);
+        // document.querySelector(`#${form}`).style.display = "block";
     },
 
     hideForm: () => {
@@ -101,10 +120,30 @@ const app = {
         console.log(location.origin);
         await app.fetchCadex();
         await app.tryPost();
+        await app.tryPatch();
         document.querySelector("#again").addEventListener("click", app.fetchCadex);
-        document.querySelector(".formOpen").addEventListener("click", app.showForm);
-        document.querySelector(".formClose").addEventListener("click", app.hideForm);
-        document.querySelector("form").addEventListener("submit", app.postCadex);
+        document.querySelector(".buttonPost").addEventListener("click", () => {
+            document.querySelector("#formPost").style.display = "block";
+        });
+        document.querySelector("#formPost .formClose").addEventListener("click", app.hideForm);
+
+        document.querySelector(".buttonPatch").addEventListener("click", () => {
+            document.querySelector("#formPatch").style.display = "block";
+        });
+        document.querySelector("#formPatch .formClose").addEventListener("click", () => {
+            document.querySelector("#formPatch").style.display = "none";
+            document.querySelector("#formPatch .formOpen").style.display = "block";
+        });
+        document.querySelector("#formPost").addEventListener("submit", (event) => {
+            console.log("je ne doigt pas recharcher");
+            event.preventDefault();
+        });
+        // document.querySelector(".buttonPatch").addEventListener("click", app.showForm, "formPatch");
+        // document.querySelector("#formPatch, .formOpen").addEventListener("click", app.showForm("formPatch"));
+        // document.querySelectorAll(".formClose").addEventListener("click", app.hideForm);
+        // });
+        // document.querySelector("#formPost").addEventListener("submit", app.postCadex);
+        // document.querySelector("#formPatch").addEventListener("submit", app.postCadex);
     },
 };
 

@@ -18,8 +18,10 @@
   },
   "homepage": "https://github.com/mohammed266392/Data-E01-cadex-Mohammed#readme",
   "dependencies": {
+    "body-parser": "^1.19.2",
     "dotenv": "^16.0.0",
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "pg": "^8.7.3"
   },
   "devDependencies": {
     "@types/jest": "^27.4.1",
